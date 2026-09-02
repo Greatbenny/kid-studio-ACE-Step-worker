@@ -1,0 +1,12 @@
+{
+  "input": {
+    "operation": "generate",
+    "caption": "Cheerful educational children's song with hand claps, marimba, gentle drums and a memorable alphabet melody",
+    "lyrics": "[Verse]\nA, B, C, come sing with me\n[Chorus]\nLearning together, happy as can be",
+    "instrumental": false,
+    "vocal_language": "en",
+    "duration_seconds": 30,
+    "quality": "cheap",
+    "seed": 42
+  }
+}
