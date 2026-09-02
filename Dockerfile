@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     ACESTEP_PROJECT_ROOT=/opt/ace-step \
     ACESTEP_DISABLE_TQDM=true \
     TOKENIZERS_PARALLELISM=false \
-    TMPDIR=/runpod-volume/tmp
+    TMPDIR=/tmp
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       software-properties-common \
