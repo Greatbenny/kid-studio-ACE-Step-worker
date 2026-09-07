@@ -41,10 +41,13 @@ RUN git clone https://github.com/ace-step/ACE-Step-1.5.git /opt/ace-step \
     && cd /opt/ace-step \
     && git checkout "${ACE_STEP_COMMIT}" \
     && uv sync --frozen --no-dev --python python3.11 \
-    && uv pip install --python /opt/ace-step/.venv/bin/python runpod==1.7.13
+    && uv pip install --python /opt/ace-step/.venv/bin/python runpod==1.7.13 \
+    && ln -sf /opt/ace-step/.venv/bin/python /usr/local/bin/python
 
 WORKDIR /opt/ace-step
 COPY handler.py /app/handler.py
-RUN /opt/ace-step/.venv/bin/python -m py_compile /app/handler.py
+RUN /opt/ace-step/.venv/bin/python -m py_compile /app/handler.py \
+    && python --version \
+    && test "$(readlink -f /usr/local/bin/python)" = "/opt/ace-step/.venv/bin/python"
 
 CMD ["/opt/ace-step/.venv/bin/python", "-u", "/app/handler.py"]
