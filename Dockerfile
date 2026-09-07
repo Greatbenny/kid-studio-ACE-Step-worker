@@ -42,7 +42,8 @@ RUN git clone https://github.com/ace-step/ACE-Step-1.5.git /opt/ace-step \
     && git checkout "${ACE_STEP_COMMIT}" \
     && uv sync --frozen --no-dev --python python3.11 \
     && uv pip install --python /opt/ace-step/.venv/bin/python runpod==1.7.13 \
-    && ln -sf /opt/ace-step/.venv/bin/python /usr/local/bin/python
+    && printf '%s\n' '#!/bin/sh' 'exec /opt/ace-step/.venv/bin/python "$@"' > /usr/local/bin/python \
+    && chmod 0755 /usr/local/bin/python
 
 WORKDIR /opt/ace-step
 COPY handler.py /app/handler.py
