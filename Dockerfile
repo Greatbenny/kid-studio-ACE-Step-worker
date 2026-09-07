@@ -47,7 +47,8 @@ RUN git clone https://github.com/ace-step/ACE-Step-1.5.git /opt/ace-step \
 WORKDIR /opt/ace-step
 COPY handler.py /app/handler.py
 RUN /opt/ace-step/.venv/bin/python -m py_compile /app/handler.py \
+    && command -v python \
     && python --version \
-    && test "$(readlink -f /usr/local/bin/python)" = "/opt/ace-step/.venv/bin/python"
+    && python -c 'import sys; assert sys.prefix == "/opt/ace-step/.venv", sys.prefix'
 
 CMD ["/opt/ace-step/.venv/bin/python", "-u", "/app/handler.py"]
